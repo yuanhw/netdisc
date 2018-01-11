@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+    <constant name="struts.i18n.encoding" value="UTF-8"/>      
+    <constant name="struts.multipart.maxSize" value="1073741824"></constant>
+	<package name="user" extends="json-default" namespace="/">
+		<action name="return" class="netdisc.action.ReturnAction">
+			<result type="redirect">/login.jsp</result>
+		</action>
+		<action name="checkname" class="netdisc.action.CheckAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="checkphone" class="netdisc.action.CheckAction" method="checkPhone">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="sendvcode" class="netdisc.action.CheckAction" method="sendVCode">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="reg" class="netdisc.action.RegAction">
+			<result type="redirectAction">main/main.action</result>
+			<result name="input">/reg.jsp</result>
+		</action>
+		<action name="regpage"><result>/reg.jsp</result></action>
+		<action name="login" class="netdisc.action.LoginAction">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+	</package>
+	<package name="file" extends="json-default" namespace="/main">
+		<action name="main" class="netdisc.action.MainAction">
+			<result name="success">/mainpage/allfile.jsp</result>
+			<result name="input" type="redirect">/login.jsp</result>
+		</action>
+		<action name="mainp" class="netdisc.action.MainAction" method="loadPreList">
+			<result name="success">/mainpage/allfile.jsp</result>
+			<result name="input" type="redirectAction">main</result>
+		</action>
+		<action name="upfile" class="netdisc.action.UpFileAction"> 
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="upfiles" class="netdisc.action.UpFileAction" method="md5HaveFile"> 
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="checkmd5" class="netdisc.action.TestFileAction"> 
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="addf" class="netdisc.action.AddFAction"> 
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="del" class="netdisc.action.DelAction"> 
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="down" class="netdisc.action.DownFileAction">
+			<result type="stream">
+				<param name="contentType">${mime}</param>
+		        <param name="contentDisposition">attachment;filename="${filename}"</param>
+	        	<param name="inputName">ins</param>
+			</result>
+			<result name="error">/error.html</result>
+		</action>
+	</package>
+	<package name="video" extends="json-default" namespace="/video">
+		<action name="plain" class="netdisc.action.VplainAction"> 
+			<result>/mainpage/video.jsp</result>
+			<result name="input">/error.html</result>
+		</action>
+		<action name="comms" class="netdisc.action.VplainAction" method="commPlay"> 
+			<result>/mainpage/video.jsp</result>
+			<result name="input">/error.html</result>
+		</action>
+	</package>
+	<package name="open" extends="json-default" namespace="/open">
+		<action name="open_view" class="netdisc.action.OpenVAction"> 
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="openmain" class="netdisc.action.OpenListVAction"> 
+			<result >/mainpage/open_video.jsp</result>
+		</action>
+		<action name="upss" class="netdisc.action.UpdateVAction"> 
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="opened" class="netdisc.action.OpenedListAction"> 
+			<result >/mainpage/opened.jsp</result>
+			<result name="error">/error.html</result>
+		</action>
+		<action name="delp" class="netdisc.action.DelPlayAction"> 
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+	</package>
+</struts>    

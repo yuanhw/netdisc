@@ -1,0 +1,26 @@
+#mylist{
+}
+#mylist div{
+	border:1px solid rgba(88, 236, 249, 0.7);
+}
+#mylist button{
+	width:85px;
+	font-size:12px;
+}
+#tools div{
+	padding-left:20px;
+	margin-top:10px;
+}
+#tools table{
+	font-size:14px;
+}
+#tools table,th,td{
+	border:1px solid rgba(88, 236, 249, 0.7);
+}
+#tools table img{
+	width:50px;
+	height:50px;
+}
+#tools table td{
+	  text-align:center;
+}
